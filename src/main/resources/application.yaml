@@ -1,1 +1,8 @@
-spring.application.name=SpringBootMongoTemplate
+spring:
+  application:
+    name: SpringBootMongoTemplate
+  data:
+    mongodb:
+      database: mongoDBTemplate
+      port: '27017'
+      host: localhost
