@@ -27,6 +27,7 @@ public class BookOperations implements CommandLineRunner {
             */
 
         //*  INSERT OPERATIONS *//
+            /*
             mongoTemplate.insert(List.of(
                     new Book(300,"Core Java", 300, "Kathy",1996.70),
                     new Book(301,"JSP & Servlet", 400, "Kathy",3100.10),
@@ -34,6 +35,16 @@ public class BookOperations implements CommandLineRunner {
                     new Book(303,"HTML & CSS", 1000, "Thomas",2010.00),
                     new Book(304,"Design Patterns", 530, "Devendra Singh",1500.00)
             ), "Book");
+            */
+
+        mongoTemplate.insertAll(List.of(
+                new Book(400,"Core Java", 300, "Kathy",1996.70),
+                new Book(401,"JSP & Servlet", 400, "Kathy",3100.10),
+                new Book(402,"Spring", 500, "Walls",2000.00),
+                new Book(403,"HTML & CSS", 1000, "Thomas",2010.00),
+                new Book(404,"Design Patterns", 530, "Devendra Singh",1500.00)
+        ));
+
         System.out.println("All records inserted successfully");
     }
 }
