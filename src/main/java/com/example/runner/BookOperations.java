@@ -49,15 +49,23 @@ public class BookOperations implements CommandLineRunner {
         */
 
         //*  FIND OPERATIONS *//
+            /*
+                List<Book> books = mongoTemplate.findAll(Book.class);
+                    books.forEach(System.out::println);
 
-        List<Book> books = mongoTemplate.findAll(Book.class);
-            books.forEach(System.out::println);
+                System.out.println("-------------------------------");
 
-        System.out.println("-------------------------------");
+                List<Book> booksList = mongoTemplate.findAll(Book.class,"Book");
+                booksList.forEach(System.out::println);
 
-        List<Book> booksList = mongoTemplate.findAll(Book.class,"Book");
-        booksList.forEach(System.out::println);
+                System.out.println("All records fetched successfully");
+            */
 
-        System.out.println("All records fetched successfully");
+        Book book = mongoTemplate.findById(401, Book.class);
+        System.out.println(book);
+
+        Book bookNew = mongoTemplate.findById(401, Book.class,"Book");
+        System.out.println(bookNew);
+
     }
 }
