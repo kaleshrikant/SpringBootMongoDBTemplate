@@ -4,9 +4,10 @@ import com.example.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class BookOperations implements CommandLineRunner {
@@ -59,13 +60,26 @@ public class BookOperations implements CommandLineRunner {
                 booksList.forEach(System.out::println);
 
                 System.out.println("All records fetched successfully");
+
+
+                Book book = mongoTemplate.findById(401, Book.class);
+                System.out.println(book);
+
+                Book bookNew = mongoTemplate.findById(401, Book.class,"Book");
+                System.out.println(bookNew);
             */
 
-        Book book = mongoTemplate.findById(401, Book.class);
-        System.out.println(book);
+        //*  UPDATE OPERATIONS *//
 
-        Book bookNew = mongoTemplate.findById(401, Book.class,"Book");
-        System.out.println(bookNew);
+        Query query = new Query();
+            query.addCriteria(Criteria.where("pages").lte(301));
 
+        Update update = new Update();
+            update.set("price", 1200);
+            update.set("name", "Updated Core Java");
+
+        // this method will update only one document despite multiple found.
+        mongoTemplate.findAndModify(query, update, Book.class);
+        System.out.println("Data has been modified");
     }
 }
