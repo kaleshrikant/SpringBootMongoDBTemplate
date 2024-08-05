@@ -90,14 +90,32 @@ public class BookOperations implements CommandLineRunner {
         */
 
         //*  DELETE OPERATIONS *//
+            /*
+                    Query queryPrice = new Query();
+                    query.addCriteria(Criteria.where("price").is(1000));
 
-        Query queryPrice = new Query();
-        query.addCriteria(Criteria.where("price").is(1000));
+                    mongoTemplate.findAndRemove(queryPrice,Book.class);
+                    System.out.println("Data has been deleted");
 
-        mongoTemplate.findAndRemove(queryPrice,Book.class);
-        System.out.println("Data has been deleted");
+                    mongoTemplate.findAllAndRemove(queryPrice,Book.class);
+                    System.out.println("All Data has been deleted");
+            */
 
-        mongoTemplate.findAllAndRemove(queryPrice,Book.class);
-        System.out.println("All Data has been deleted");
+
+        //*  UPSERT OPERATIONS : update if found else insert *//
+
+        Query upsertQuery = new Query();
+        query.addCriteria(Criteria.where("id").is(501));
+
+        Update upsertUpdate = new Update();
+        update.set("name", "MongoDB");
+        update.set("pages", 333);
+        update.set("author","Shrikant Kale");
+        update.set("price", 1234);
+
+        mongoTemplate.upsert(upsertQuery, upsertUpdate, Book.class);
+        System.out.println(" Data has been upserted");
+
+
     }
 }
