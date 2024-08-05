@@ -82,13 +82,19 @@ public class BookOperations implements CommandLineRunner {
             // this method will update only one document despite multiple found.
             mongoTemplate.findAndModify(query, update, Book.class);
             System.out.println("Data has been modified");
-        */
 
+            // this method will update multiple documents
         Update updateMultiple = new Update();
         updateMultiple.set("price", 1500);
         updateMultiple.set("name", "Enhanced Core Java");
+        */
 
-        mongoTemplate.updateMulti(query, updateMultiple, Book.class);
-        System.out.println("Data has been modified");
+        //*  DELETE OPERATIONS *//
+
+        Query queryPrice = new Query();
+        query.addCriteria(Criteria.where("price").is(1000));
+
+        mongoTemplate.findAndRemove(queryPrice,Book.class);
+        System.out.println("Data has been deleted");
     }
 }
