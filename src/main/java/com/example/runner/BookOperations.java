@@ -96,5 +96,8 @@ public class BookOperations implements CommandLineRunner {
 
         mongoTemplate.findAndRemove(queryPrice,Book.class);
         System.out.println("Data has been deleted");
+
+        mongoTemplate.findAllAndRemove(queryPrice,Book.class);
+        System.out.println("All Data has been deleted");
     }
 }
