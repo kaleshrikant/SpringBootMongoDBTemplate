@@ -16,3 +16,13 @@
   "price": 1500,
   "_class": "com.example.entity.Book"
 }
+
+// having one document as :
+{
+  "_id": 404,
+  "name": "Design Patterns",
+  "pages": 530,
+  "author": "Devendra Singh",
+  "price": 1000,
+  "_class": "com.example.entity.Book"
+}
